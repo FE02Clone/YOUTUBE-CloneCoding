@@ -1,0 +1,148 @@
+body,
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+/* main */
+.container {
+  display: flex;
+  justify-content: left;
+}
+.nav-left {
+  /* width: 70px; */
+  padding: 0.5rem;
+}
+
+.nav-icon {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  text-align: center;
+}
+.nav-icon img {
+  margin-bottom: 0.5rem;
+}
+
+.main-con {
+  width: 90vw;
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  margin: 30px 0 0 40px;
+}
+.search input {
+  width: 540px;
+  height: 38px;
+  border: 1px solid #d3d3d3;
+  margin-top: 1rem;
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+  padding-left: 20px;
+  outline: none;
+}
+.search input:focus {
+  border-style: none;
+  border: 1px solid #d3d3d3;
+}
+.btn-search {
+  width: 65px;
+  margin-left: -7px;
+  padding: 6px 0 12px;
+  border: 1px solid #d3d3d3;
+  background-color: #f8f8f8;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+}
+
+.menu-filter {
+  margin: 2rem 0 0 0.5rem;
+  display: flex;
+}
+.menu-filter ul {
+  display: flex;
+}
+.menu-filter li {
+  padding: 9px 10px;
+  margin-left: 12px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+.menu-filter li.m-select {
+  background-color: black;
+  color: #fff;
+}
+.m-select {
+  display: block;
+  background-color: black;
+}
+.contents-main {
+  width: 100vw;
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.thumb-area {
+  width: 350px;
+  margin-left: 15px;
+}
+.thumb-mv {
+  width: 345px;
+  height: 194px;
+  background: url("../public/images/youtube.jpg") no-repeat;
+  margin-bottom: 13px;
+  border-radius: 15px;
+}
+.thumb-detail {
+  display: flex;
+}
+.thumb-logo {
+  width: 56px;
+  height: 36px;
+  margin-right: 13px;
+  border-radius: 50px;
+  background: url(../public/images/thumbnail_logo.jpg) no-repeat;
+}
+.thumb-title {
+  font-size: 14px;
+  line-height: 1.2rem;
+  margin-bottom: 12px;
+}
+.thumb-user,
+.thumb-time {
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #606060;
+}
+.thumb-time {
+  margin-bottom: 45px;
+}
+.contents-shorts {
+  display: flex;
+}
+.shorts-logo {
+  margin-bottom: 25px;
+}
+
+.shorts-area {
+  width: 242px;
+  margin: 0 15px 15px 0;
+}
+.shorts-mv {
+  width: 241px;
+  height: 429px;
+  background: url(../public/images/short-img.jpg) no-repeat;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
