@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { signUpDB } from "../redux/modules/user";
+import { signUpFB } from "../redux/modules/user";
 import { emailCheck } from "../shared/SignUpCheck";
 
 const SignUp = () => {
@@ -32,7 +32,7 @@ const SignUp = () => {
       return;
     }
 
-    dispatch(signUpDB(email, password, nickname, confirmPassword));
+    dispatch(signUpFB(email, password, nickname, ));
   };
 
   return (
