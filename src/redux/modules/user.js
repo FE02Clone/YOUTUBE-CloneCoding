@@ -1,136 +1,148 @@
-import axios from "axios";
 import { deleteCookie, getCookie, setCookie } from "../../shared/cookie";
+import { auth } from "../../shared/firebase";
+import firebase from "firebase/compat/app";
 
 // action
-const LOG_IN = "LOG_IN";
 const LOG_OUT = "LOG_OUT";
-const LOAD_TOKEN = "LOAD_TOKEN";
-const SIGN_UP = "SIGN_UP";
+const GET_USER = "GET_USER";
+const SET_USER = "SET_USER";
 
 // action creator
-const login = (user) => {
-  return { type: LOG_IN, user };
-};
 const logout = (user) => {
   return { type: LOG_OUT, user };
 };
-const loadToken = (token) => {
-  return { type: LOAD_TOKEN, token };
+const getuser = (user) => {
+  return { type: GET_USER, user };
 };
-const signUp = (user) => {
-  return { type: SIGN_UP, user };
+const setuser = (user) => {
+  return { type: SET_USER, payload: user };
 };
 
 // initialState
 const initialState = {
-  userInfo: {
-    email: "",
-    password: "",
-  },
+  user: null,
   is_login: false,
-  token: null,
 };
 
 // thunk
-// 토큰 로드 액션
-export const loadTokenFB = () => {
-  return function (dispatch) {
-    if (getCookie("Authorization")) {
-      dispatch(loadToken());
-    }
-  };
-};
 // 회원 가입
-export const signUpDB = (email, nickname, password, confirmPassword) => {
+const signUpFB = (email, password, nickname) => {
   return function (dispatch, getState) {
-    axios
-      .post("", {
-        email,
-        nickname,
-        password,
-        confirmPassword,
-      })
-      .then((response) => {
-        dispatch(
-          signUp({
-            is_login: true,
-            token: response.data.token,
-            email: email,
-            nickname: nickname,
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((user) => {
+        console.log(user);
+        auth.currentUser
+          .updateProfile({
+            displayName: nickname,
           })
-        );
-        setCookie("Authorization", response.data.token);
-        setCookie("nickname", nickname);
-        window.alert("회원가입을 축하합니다!");
+          .then(() => {
+            dispatch(
+              setuser({
+                email: email,
+                password: password,
+                nickname: nickname,
+                user_profile: "",
+              })
+            );
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error("회원 가입 실패", errorCode, errorMessage);
+          });
+
+        // Signed in
+        // ...
       })
       .catch((error) => {
-        console.log("회원가입 DB Error", error);
-        window.alert("아이디, 닉네임 또는 비밀번호를 확인해주세요.");
+        console.log(error);
+        // ..
       });
   };
 };
 
 // 로그인
-export const loginDB = (email, password) => {
+const loginFB = (email, password) => {
   return function (dispatch, getState) {
-    axios
-      .post("", {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
+    auth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then((res) => {
+      auth
+        .signInWithEmailAndPassword(email, password)
+        .then((user) => {
+          console.log(user);
+
+          dispatch(
+            setuser({
+              email: email,
+              user_profile: "",
+              uid: user.user.uid,
+            })
+          );
+        })
+        .catch((error) => {
+          alert(
+            "등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력하였습니다."
+          );
+          console.log(error);
+        });
+    });
+  };
+};
+
+// 로그인 체크
+const loginCheckFB = () => {
+  return function (dispatch, getState) {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
         dispatch(
-          login({
-            is_login: true,
-            token: response.data.token,
+          setuser({
+            user_name: user.displayName,
+            user_profile: "",
+            id: user.email,
+            uid: user.uid,
           })
         );
-        setCookie("Authorization", response.data.token);
-        setCookie("nickname", response.data.nickname);
-      })
-      .catch((error) => {
-        console.log(error);
-        window.alert("아이디 또는 비밀번호 오류");
-      });
+      } else {
+        dispatch(logout());
+      }
+    });
+  };
+};
+
+const logoutFB = () => {
+  return function (dispatch, getState, { history }) {
+    auth.signOut().then(() => {
+      dispatch(logout());
+      history.replace("/"); // push와 다른 점: 페이지를 바꿔치기 해서 뒤로가기 해도 예전 페이지가 안나옴
+    });
   };
 };
 
 //reducer
 const userReducer = (state = initialState, action) => {
-  const { user } = action.payload;
   switch (action.type) {
-    case LOG_IN:
-      setCookie("is_login", "true");
+    case SET_USER:
+      setCookie("is_login", "success");
       return {
         ...state,
-        token: user.token,
-        user: user,
+        user: action.payload,
         is_login: true,
       };
     case LOG_OUT:
       deleteCookie("is_login");
-      localStorage.removeItem("nickname");
-      localStorage.removeItem("token");
       return {
         ...state,
         user: null,
         is_login: false,
-        token: null,
       };
-    case SIGN_UP:
-      setCookie("is_login", "true");
-      return {
-        ...state,
-        token: user.token,
-        user: {
-          email: user.email,
-          nickname: user.nickname,
-        },
-        is_login: true,
-      };
+    case GET_USER:
+      return state;
+
     default:
       return state;
   }
 };
+export { logout, getuser, setuser, loginFB, signUpFB, loginCheckFB, logoutFB };
 
 export default userReducer;
