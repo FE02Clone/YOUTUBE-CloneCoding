@@ -32,8 +32,25 @@ const Login = () => {
   return (
     <>
       <div>Log in</div>
-      <input 
+      <input
+        value={email}
+        onChange={changeId}
+        placeholder="이메일을 입력하세요"
       />
+      <input
+        value={password}
+        onChange={changePwd}
+        type="password"
+        placeholder="비밀번호를 입력하세요"
+      />
+      <button
+        onClick={() => {
+          login();
+        }}
+        disabled={email === "" || password === "" || !emailCheck(email)}
+      >
+        로그인
+      </button>
     </>
   );
 };
