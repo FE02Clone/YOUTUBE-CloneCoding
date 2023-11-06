@@ -2,9 +2,10 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 import "moment/locale/ko";
+import styled from "styled-components";
 
 const VideoCard = () => {
-  const [video, setVideo] = useState([]);
+  const [video, setVideo] = useState("");
 
   const fetchData = async () => {
     const response = await axios.get(
@@ -12,6 +13,7 @@ const VideoCard = () => {
     );
     setVideo(response.data);
   };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -26,27 +28,69 @@ const VideoCard = () => {
           const view = item.statistics.viewCount;
           const count = Math.floor(view / 10000);
           return (
-            <div className="thumb-area" key={index}>
-              <img
-                className="thumb-mv"
-                src={item.snippet.thumbnails.standard.url}
+            <StThumbArea key={index}>
+              <StThumbMv
+                src={item.snippet.thumbnails.high.url}
                 alt={item.snippet.title}
               />
-              <div className="thumb-detail">
-                <div className="thumb-logo"></div>
+              <StThumbDetail>
+                <StThumbLogo></StThumbLogo>
                 <div className="thumb-description">
-                  <div className="thumb-title">{item.snippet.title}</div>
-                  <div className="thumb-user">{item.snippet.channelTitle}</div>
-                  <div className="thumb-time">
+                  <StThumbTitle>{item.snippet.title}</StThumbTitle>
+                  <StThumbUser>{item.snippet.channelTitle}</StThumbUser>
+                  <StThumbTime>
                     조회수 {count}만 회 ㆍ{time}
-                  </div>
+                  </StThumbTime>
                 </div>
-              </div>
-            </div>
+              </StThumbDetail>
+            </StThumbArea>
           );
         })}
     </>
   );
 };
+
+const StThumbArea = styled.div`
+  width: 350px;
+  margin-left: 15px;
+`;
+
+const StThumbMv = styled.img`
+  width: 345px;
+  height: 194px;
+  margin-bottom: 13px;
+  border-radius: 15px;
+`;
+
+const StThumbDetail = styled.div`
+  display: flex;
+`;
+
+const StThumbLogo = styled.div`
+  width: 56px;
+  height: 36px;
+  margin-right: 13px;
+  border-radius: 50px;
+  background: url(/images/thumbnail_logo.jpg) no-repeat;
+`;
+
+const StThumbTitle = styled.div`
+  font-size: 16px;
+  line-height: 1.2rem;
+  margin-bottom: 12px;
+`;
+
+const StThumbUser = styled.div`
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #606060;
+`;
+
+const StThumbTime = styled.div`
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #606060;
+  margin-bottom: 40px;
+`;
 
 export default VideoCard;
