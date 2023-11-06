@@ -93,41 +93,7 @@ ul {
   display: flex;
   flex-wrap: wrap;
 }
-.thumb-area {
-  width: 350px;
-  margin-left: 15px;
-}
-.thumb-mv {
-  width: 345px;
-  height: 194px;
-  background: url("../public/images/youtube.jpg") no-repeat;
-  margin-bottom: 13px;
-  border-radius: 15px;
-}
-.thumb-detail {
-  display: flex;
-}
-.thumb-logo {
-  width: 56px;
-  height: 36px;
-  margin-right: 13px;
-  border-radius: 50px;
-  background: url(../public/images/thumbnail_logo.jpg) no-repeat;
-}
-.thumb-title {
-  font-size: 14px;
-  line-height: 1.2rem;
-  margin-bottom: 12px;
-}
-.thumb-user,
-.thumb-time {
-  margin-bottom: 8px;
-  font-size: 13px;
-  color: #606060;
-}
-.thumb-time {
-  margin-bottom: 45px;
-}
+
 .contents-shorts {
   display: flex;
 }

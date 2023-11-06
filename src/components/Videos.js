@@ -6,19 +6,9 @@ function Videos() {
     <>
       <div className="contents-main">
         <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
-        <VideoCard />
       </div>
     </>
   );
 }
 
 export default Videos;
-
