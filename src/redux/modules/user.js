@@ -111,10 +111,10 @@ const loginCheckFB = () => {
 };
 
 const logoutFB = () => {
-  return function (dispatch, getState, { history }) {
+  return function (dispatch, getState) {
     auth.signOut().then(() => {
       dispatch(logout());
-      history.replace("/"); // push와 다른 점: 페이지를 바꿔치기 해서 뒤로가기 해도 예전 페이지가 안나옴
+      // push와 다른 점: 페이지를 바꿔치기 해서 뒤로가기 해도 예전 페이지가 안나옴
     });
   };
 };
