@@ -1,52 +1,42 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import moment from "moment";
 import "moment/locale/ko";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const VideoCard = () => {
-  const [video, setVideo] = useState("");
+const VideoCard = ({ video }) => {
+  const time = moment(video.snippet.publishedAt).fromNow();
+  const view = video.statistics.viewCount;
+  const count = Math.floor(view / 10000);
 
-  const fetchData = async () => {
-    const response = await axios.get(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics%2Cplayer&chart=mostPopular&maxResults=25&regionCode=US&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
-    );
-    setVideo(response.data);
-  };
+  const channelThumbnail = video.channelInfo?.thumbnails?.default?.url;
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  console.log(video.items);
+  console.log(video);
 
   return (
-    <>
-      {video.items &&
-        video.items.map((item, index) => {
-          const time = moment(item.snippet.publishedAt).fromNow();
-          const view = item.statistics.viewCount;
-          const count = Math.floor(view / 10000);
-          return (
-            <StThumbArea key={index}>
-              <StThumbMv
-                src={item.snippet.thumbnails.high.url}
-                alt={item.snippet.title}
-              />
-              <StThumbDetail>
-                <StThumbLogo></StThumbLogo>
-                <div className="thumb-description">
-                  <StThumbTitle>{item.snippet.title}</StThumbTitle>
-                  <StThumbUser>{item.snippet.channelTitle}</StThumbUser>
-                  <StThumbTime>
-                    조회수 {count}만 회 ㆍ{time}
-                  </StThumbTime>
-                </div>
-              </StThumbDetail>
-            </StThumbArea>
-          );
-        })}
-    </>
+    <Link
+      to={`/video/detail/${video.id}`}
+      style={{ textDecoration: "none", color: "black" }}
+    >
+      <StThumbArea>
+        <StThumbMv
+          src={video.snippet.thumbnails.high.url}
+          alt={video.snippet.title}
+        />
+        <StThumbDetail>
+          <StThumbLogo
+            style={{ backgroundImage: `url(${channelThumbnail})` }}
+          />
+          <div className="thumb-description">
+            <StThumbTitle>{video.snippet.title}</StThumbTitle>
+            <StThumbUser>{video.snippet.channelTitle}</StThumbUser>
+            <StThumbTime>
+              조회수 {count}만 회 ㆍ{time}
+            </StThumbTime>
+          </div>
+        </StThumbDetail>
+      </StThumbArea>
+    </Link>
   );
 };
 
@@ -67,15 +57,17 @@ const StThumbDetail = styled.div`
 `;
 
 const StThumbLogo = styled.div`
-  width: 56px;
+  width: 36px;
   height: 36px;
-  margin-right: 13px;
-  border-radius: 50px;
-  background: url(/images/thumbnail_logo.jpg) no-repeat;
+  margin-right: 14px;
+  border-radius: 50%;
+  background-size: cover;
 `;
 
 const StThumbTitle = styled.div`
+  width: 280px;
   font-size: 16px;
+  font-weight: 450;
   line-height: 1.2rem;
   margin-bottom: 12px;
 `;

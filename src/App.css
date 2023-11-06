@@ -308,9 +308,15 @@ ul {
 .DetailRtText {
   margin-left: 10px;
   font-size: 0.9rem;
+  font-weight: 500;
 }
 .DetailRtTextS {
   font-size: 0.8rem;
   margin-top: 10px;
   color: #777;
+}
+.DetailSmallImg img {
+  width: 168px;
+  height: 95px;
+  border-radius: 15px;
 }

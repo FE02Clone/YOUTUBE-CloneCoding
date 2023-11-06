@@ -8,66 +8,15 @@ import { RiMenuAddFill } from "react-icons/ri";
 import CommentList from "../components/CommentList";
 import DetailList from "../components/DetailList";
 import styled from "styled-components";
-import { useParams } from "react-router";
-import ReactPlayer from "react-player";
-import { useEffect } from "react";
-import axios from "axios";
-import { useState } from "react";
-
-const VideoDetail = ({ video }) => {
-  const { videoId } = useParams();
-  const [videos, setVideos] = useState([]);
-
-  const fetchData = async () => {
-    const response = await axios.get(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics%2Cplayer&chart=mostPopular&maxResults=25&regionCode=US&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
-    );
-    const videoItems = response.data.items;
-
-    const updatedVideos = await Promise.all(
-      videoItems.map(async (video) => {
-        const channelId = video.snippet.channelId;
-        const channelInfo = await fetchChannelInfo(channelId);
-        return {
-          ...video,
-          channelInfo: channelInfo,
-        };
-      })
-    );
-
-    setVideos(updatedVideos);
-  };
-
-  const fetchChannelInfo = async (channelId) => {
-    const response = await axios.get(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
-    );
-    const channelInfo = response.data.items[0].snippet;
-    return channelInfo;
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  console.log(video);
+const VideoDetail = () => {
   return (
     <>
       <StContainerDetail>
         <StDetailLt>
-          <StDetailMv>
-            <ReactPlayer
-              playing={true}
-              url={`https://www.youtube.com/watch?v=${videoId}`}
-              width="100%"
-              height="720px"
-              style={{ border: "none", borderRadius: "20px" }}
-            />
-          </StDetailMv>
+          <StDetailMv></StDetailMv>
           <StDetailTitle>
-            {/* {video.snippet.title} */}
-            2023 ISU 피겨 그랑프리 3차_그랑프리 드 프랑스_이해인 프리_뮤지컬
-            '노트르담 드 파리' OST [습츠_피겨스케이팅]
+            {/* 2023 ISU 피겨 그랑프리 3차_그랑프리 드 프랑스_이해인 프리_뮤지컬
+            '노트르담 드 파리' OST [습츠_피겨스케이팅] */}
           </StDetailTitle>
           <StDetailDescription>
             <StThumbImg></StThumbImg>
@@ -129,9 +78,17 @@ const VideoDetail = ({ video }) => {
           <CommentList />
         </StDetailLt>
         <StDetailRt>
-          {videos.map((video, index) => (
-            <DetailList key={index} video={video} />
-          ))}
+          <DetailList />
+          <DetailList />
+          <DetailList />
+          <DetailList />
+          <DetailList />
+          <DetailList />
+          <DetailList />
+          <DetailList />
+          <DetailList />
+          <DetailList />
+          <DetailList />
         </StDetailRt>
       </StContainerDetail>
     </>
