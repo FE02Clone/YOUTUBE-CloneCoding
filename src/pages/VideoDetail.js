@@ -54,6 +54,8 @@ const VideoDetail = ({ video }) => {
     fetchData();
   }, []);
 
+  
+
   // videoId와 일치하는 동영상 찾기
   const currentVideo = videos.find((video) => video.id === videoId);
 
