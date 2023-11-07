@@ -47,7 +47,7 @@ const StThumbArea = styled.div`
 
 const StThumbMv = styled.img`
   width: 345px;
-  height: 194px;
+  height: 100%;
   margin-bottom: 13px;
   border-radius: 15px;
 `;
@@ -66,14 +66,16 @@ const StThumbLogo = styled.div`
 
 const StThumbTitle = styled.div`
   width: 280px;
+  height: 41px;
+  overflow: hidden;
   font-size: 16px;
   font-weight: 450;
   line-height: 1.2rem;
-  margin-bottom: 12px;
+  margin-bottom: 3px;
 `;
 
 const StThumbUser = styled.div`
-  margin-bottom: 8px;
+  margin-bottom: 3px;
   font-size: 13px;
   color: #606060;
 `;
@@ -82,7 +84,7 @@ const StThumbTime = styled.div`
   margin-bottom: 8px;
   font-size: 13px;
   color: #606060;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 `;
 
 export default VideoCard;

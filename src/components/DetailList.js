@@ -8,17 +8,16 @@ const DetailList = ({ video }) => {
   const view = video.statistics.viewCount;
   const count = Math.floor(view / 10000);
 
-  const channelThumbnail = video.channelInfo?.thumbnails?.default?.url;
-
-  console.log(video);
+  // console.log(video);
   return (
     <Link
       to={`/video/detail/${video.id}`}
       style={{ textDecoration: "none", color: "black" }}
     >
       <div className="DetailSmallList">
-        <div className="DetailSmallImg">
+        <div>
           <img
+            className="DetailSmallImg"
             src={video.snippet.thumbnails.high.url}
             alt={video.snippet.title}
           />
