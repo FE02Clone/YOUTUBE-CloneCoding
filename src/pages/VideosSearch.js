@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import VideoCard from "./VideoCard";
+import VideoCard from "../components/VideoCard";
 import axios from "axios";
+import styled from "styled-components";
+import SearchHeader from "../components/SearchHeader";
+import NavLeft from "../components/NavLeft";
 
 function VideosSearch() {
   const { keyword } = useParams(); // useParams를 통해 키워드 받아오기
@@ -9,7 +12,7 @@ function VideosSearch() {
 
   const fetchData = async () => {
     const response = await axios.get(
-      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${keyword}&key=${process.env.REACT_APP_YOUTUBE_API_KEYI}`
+      `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&type=video&q=${keyword}&key=${process.env.REACT_APP_YOUTUBE_API_KEYI}`
     );
     const videoItems = response.data.items;
 
@@ -54,13 +57,26 @@ function VideosSearch() {
 
   return (
     <>
-      <div className="contents-main">
-        {videos.map((video, index) => (
-          <VideoCard key={index} video={video} />
-        ))}
+      <div className="container">
+        <NavLeft />
+        <div className="main-con">
+          <SearchHeader />
+          <StContentsMain>
+            {videos.map((video, index) => (
+              <VideoCard key={index} video={video} />
+            ))}
+          </StContentsMain>
+        </div>
       </div>
     </>
   );
 }
+
+const StContentsMain = styled.div`
+  width: 100vw;
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 export default VideosSearch;

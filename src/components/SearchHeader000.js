@@ -1,21 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { GoSearch } from "react-icons/go";
 import { AiOutlineVideoCameraAdd } from "react-icons/ai";
 import { BsBell } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SearchHeader = () => {
-  const [keyword, setKeyword] = useState("");
-  const navigate = useNavigate();
-  const handleInputChange = (e) => {
-    setKeyword(e.target.value);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    navigate(`/search/${keyword}`);
-  };
-
   return (
     <>
       <nav className="top-nav">
@@ -25,8 +14,8 @@ const SearchHeader = () => {
           </div>
         </Link>
         <div className="search">
-          <form onSubmit={handleSubmit}>
-            <input type="text" value={keyword} onChange={handleInputChange} />
+          <form action="">
+            <input type="text" />
             <button className="btn-search">
               <GoSearch />
             </button>
