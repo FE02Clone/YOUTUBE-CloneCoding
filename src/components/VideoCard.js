@@ -65,6 +65,12 @@ const StThumbLogo = styled.div`
 `;
 
 const StThumbTitle = styled.div`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
   width: 280px;
   font-size: 16px;
   font-weight: 450;

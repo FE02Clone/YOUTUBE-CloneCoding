@@ -37,7 +37,7 @@ function Videos() {
     fetchData();
   }, []);
 
-  console.log(videos);
+  // console.log(videos);
 
   return (
     <>
