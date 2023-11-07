@@ -9,9 +9,9 @@ const VideoCard = ({ video }) => {
   const view = video.statistics.viewCount;
   const count = Math.floor(view / 10000);
 
-  const channelThumbnail = video.channelInfo?.thumbnails?.default?.url;
+  const channelThumbnail = video.channelInfo?.snippet?.thumbnails?.default?.url;
 
-  console.log(video);
+  // console.log(video);
 
   return (
     <Link
