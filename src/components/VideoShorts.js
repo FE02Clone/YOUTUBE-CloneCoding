@@ -37,7 +37,7 @@ const VideoShorts = () => {
     fetchData();
   }, []);
 
-  console.log(shorts);
+  // console.log(shorts);
 
   return (
     <>
@@ -52,6 +52,5 @@ const VideoShorts = () => {
     </>
   );
 };
-
 
 export default VideoShorts;
