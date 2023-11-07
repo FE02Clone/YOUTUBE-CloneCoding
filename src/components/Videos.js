@@ -7,7 +7,7 @@ function Videos() {
 
   const fetchData = async () => {
     const response = await axios.get(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics%2Cplayer&chart=mostPopular&maxResults=25&regionCode=US&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics%2Cplayer&chart=mostPopular&maxResults=25&regionCode=KR&key=${process.env.REACT_APP_YOUTUBE_API_KEYI}`
     );
     const videoItems = response.data.items;
 
@@ -27,9 +27,9 @@ function Videos() {
 
   const fetchChannelInfo = async (channelId) => {
     const response = await axios.get(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${channelId}&key=${process.env.REACT_APP_YOUTUBE_API_KEYI}`
     );
-    const channelInfo = response.data.items[0].snippet;
+    const channelInfo = response.data.items[0];
     return channelInfo;
   };
 
