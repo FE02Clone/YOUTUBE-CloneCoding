@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import {useNavigate } from "react-router-dom";
 const Container = styled.div`
   margin: 2rem 0 0 0.5rem;
   display: flex;
@@ -27,7 +27,7 @@ const List = styled.li`
   outline-style: none;
 
   background-color: ${({ selected }) =>
-    selected ? "black" : "rgba(0,0,0,0.05)"};
+    selected ? "black" :"rgba(0,0,0,0.05)"};
   border-radius: 8px;
   div {
     font-size: 1rem;
@@ -36,26 +36,28 @@ const List = styled.li`
     line-height: 2rem;
     color: ${({ selected }) => (selected ? "white" : "black")};
   }
-
+  &:not(.m-select){
   &:hover {
-    background-color: ${(selected) =>
-      !selected ? "black" : "rgba(0,0,0,0.15)"};
-  }
+    background-color: rgba(0,0,0,0.15);
+  }}
 `;
-//hover 확인하기
 
 function MenuFilter({ info, ...rest }) {
+  const navigate = useNavigate();
+
+
   const [clicked, setClicked] = useState();
   const list = info.map((a, i) => {
     return (
       <List
         key={i}
-        onClick={(a) => {
+        onClick={() => {
           setClicked(i);
+          navigate(`/search/${a}`);
         }}
         className={clicked === i ? "m-select" : ""}
         selected={clicked === i ? true : false}
-      ></List>
+      ><div>{a}</div></List>
     );
   });
 

@@ -22,7 +22,7 @@ const Home = () => {
 
         <div className="main-con">
           <SearchHeader />
-          <MenuFilter />
+          <MenuFilter info={filterList} />
           <Videos />
           <VideoShorts />
         </div>
