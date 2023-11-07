@@ -17,8 +17,8 @@ ul {
   justify-content: left;
 }
 .nav-left {
-  width: 70px;
-  padding: 0.5rem;
+  /* width: 70px;
+  padding: 0.5rem; */
 }
 /* css변경 */
 .nav-icon {

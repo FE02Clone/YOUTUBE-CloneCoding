@@ -14,10 +14,12 @@ const SearchHeader = () => {
           </div>
         </Link>
         <div className="search">
-          <input type="text" />
-          <button className="btn-search">
-            <GoSearch />
-          </button>
+          <form action="">
+            <input type="text" />
+            <button className="btn-search">
+              <GoSearch />
+            </button>
+          </form>
         </div>
         <div className="login">
           <div className="IconSubscribe">
