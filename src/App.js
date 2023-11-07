@@ -6,6 +6,7 @@ import SignUp from "./pages/SignUp";
 import VideoDetail from "./pages/VideoDetail";
 import NotFound from "./pages/NotFound";
 import VideosSearch from "./pages/VideosSearch";
+import SearchDetail from "./pages/SearchDetail";
 function App() {
   return (
     <>
@@ -15,6 +16,10 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/Video/Detail/:videoId" element={<VideoDetail />} />
+          <Route
+            path="/Video/DetailSearch/:videoId"
+            element={<SearchDetail />}
+          />
           <Route path="/search/:keyword" element={<VideosSearch />} />
           <Route path="/NotFound" element={<NotFound />} />
         </Routes>

@@ -5,10 +5,16 @@ import axios from "axios";
 import styled from "styled-components";
 import SearchHeader from "../components/SearchHeader";
 import NavLeft from "../components/NavLeft";
+import SearchDetail from "../pages/SearchDetail";
 
 function VideosSearch() {
   const { keyword } = useParams(); // useParams를 통해 키워드 받아오기
   const [videos, setVideos] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
+  const handleVideoSelect = (video) => {
+    setSelectedVideo(video);
+  };
 
   const fetchData = async () => {
     const response = await axios.get(
@@ -55,6 +61,7 @@ function VideosSearch() {
     fetchData();
   }, [keyword]); // 키워드가 변경되면 fetchData를 다시 호출
 
+  console.log(videos);
   return (
     <>
       <div className="container">
@@ -63,11 +70,17 @@ function VideosSearch() {
           <SearchHeader />
           <StContentsMain>
             {videos.map((video, index) => (
-              <VideoCard key={index} video={video} />
+              <VideoCard
+                key={index}
+                video={video}
+                link={`detailsearch/${video.id}`}
+                onSelect={handleVideoSelect}
+              />
             ))}
           </StContentsMain>
         </div>
       </div>
+      {selectedVideo && <SearchDetail video={selectedVideo} />}
     </>
   );
 }
