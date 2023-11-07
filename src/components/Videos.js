@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
 import axios from "axios";
+import styled from "styled-components";
 
 function Videos() {
   const [videos, setVideos] = useState([]);
@@ -41,13 +42,20 @@ function Videos() {
 
   return (
     <>
-      <div className="contents-main">
+      <StContentsMain>
         {videos.map((video, index) => (
           <VideoCard key={index} video={video} />
         ))}
-      </div>
+      </StContentsMain>
     </>
   );
 }
+
+const StContentsMain = styled.div`
+  width: 100vw;
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 export default Videos;
