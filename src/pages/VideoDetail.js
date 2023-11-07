@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
 import moment from "moment";
+import SearchHeader from "../components/SearchHeader";
 
 const VideoDetail = ({ video }) => {
   const { videoId } = useParams();
@@ -75,6 +76,7 @@ const VideoDetail = ({ video }) => {
   console.log(video);
   return (
     <>
+      <SearchHeader />
       <StContainerDetail>
         <StDetailLt>
           <StDetailMv>

@@ -17,8 +17,8 @@ ul {
   justify-content: left;
 }
 .nav-left {
-  /* width: 70px; */
-  /* padding: 0.5rem; */
+  /* width: 70px;
+  padding: 0.5rem; */
 }
 /* css변경 */
 .nav-icon {
@@ -311,7 +311,7 @@ ul {
   font-weight: 500;
 }
 .DetailRtTitle {
-  height: 42px;
+  height: 60px;
   overflow: hidden;
 }
 .DetailRtTextS {
@@ -319,8 +319,8 @@ ul {
   margin-top: 10px;
   color: #777;
 }
-.DetailSmallImg img {
-  width: 168px;
-  height: 95px;
+.DetailSmallImg {
+  width: 160px;
+  height: 95%;
   border-radius: 15px;
 }
