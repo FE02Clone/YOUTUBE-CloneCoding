@@ -5,9 +5,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import VideoDetail from "./pages/VideoDetail";
 import NotFound from "./pages/NotFound";
-import Videos from "./components/Videos";
-// import SearchHeader from "./components/SearchHeader";
-
+import VideosSearch from "./components/VideosSearch";
 function App() {
   return (
     <>
@@ -17,7 +15,7 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/Video/Detail/:videoId" element={<VideoDetail />} />
-          <Route path="videos/:keyword" element={<Videos />} />
+          <Route path="/search/:searchId" element={<VideosSearch />} />
           <Route path="/NotFound" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
