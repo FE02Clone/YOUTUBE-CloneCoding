@@ -1,18 +1,36 @@
 import React from "react";
+import moment from "moment";
+import "moment/locale/ko";
+import { Link } from "react-router-dom";
 
-const DetailList = () => {
+const DetailList = ({ video }) => {
+  const time = moment(video.snippet.publishedAt).fromNow();
+  const view = video.statistics.viewCount;
+  const count = Math.floor(view / 10000);
+
+  const channelThumbnail = video.channelInfo?.thumbnails?.default?.url;
+
+  console.log(video);
   return (
-    <div className="DetailSmallList">
-      <div className="DetailSmallImg">
-        <img src="/images/img-detail-small.jpg" alt="" />
-      </div>
-      <div className="DetailRtText">
-        <div>2023 ISU 피겨 그랑프리 3차_그랑프리 드 프랑스...</div>
-        <div className="DetailRtTextS">
-          스브스스포츠 SUBUSU SPORTS <br /> 조회수 1.7천회 23분 전
+    <Link
+      to={`/video/detail/${video.id}`}
+      style={{ textDecoration: "none", color: "black" }}
+    >
+      <div className="DetailSmallList">
+        <div className="DetailSmallImg">
+          <img
+            src={video.snippet.thumbnails.high.url}
+            alt={video.snippet.title}
+          />
+        </div>
+        <div className="DetailRtText">
+          <div className="DetailRtTitle">{video.snippet.title}</div>
+          <div className="DetailRtTextS">
+            {video.snippet.channelTitle} <br /> 조회수 {count}만 회 ㆍ{time}
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

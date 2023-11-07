@@ -15,7 +15,7 @@ const VideoCard = ({ video }) => {
 
   return (
     <Link
-      to={"/Video/Detail/:" + video.id}
+      to={`/video/detail/${video.id}`}
       style={{ textDecoration: "none", color: "black" }}
     >
       <StThumbArea>

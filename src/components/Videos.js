@@ -7,7 +7,11 @@ function Videos() {
 
   const fetchData = async () => {
     const response = await axios.get(
+<<<<<<< HEAD
       `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics%2Cplayer&chart=mostPopular&maxResults=25&regionCode=KR&key=${process.env.REACT_APP_YOUTUBE_API_KEYI}`
+=======
+      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics%2Cplayer&chart=mostPopular&maxResults=25&regionCode=KR&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+>>>>>>> d7a021086e3e92eaaf9283bff40172fd01a1e05f
     );
     const videoItems = response.data.items;
 

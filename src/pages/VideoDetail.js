@@ -8,23 +8,96 @@ import { RiMenuAddFill } from "react-icons/ri";
 import CommentList from "../components/CommentList";
 import DetailList from "../components/DetailList";
 import styled from "styled-components";
-const VideoDetail = () => {
+import { useParams } from "react-router";
+import ReactPlayer from "react-player";
+import { useEffect } from "react";
+import axios from "axios";
+import { useState } from "react";
+import moment from "moment";
+
+const VideoDetail = ({ video }) => {
+  const { videoId } = useParams();
+  const [videos, setVideos] = useState([]);
+
+  const fetchData = async () => {
+    const response = await axios.get(
+      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics%2Cplayer&chart=mostPopular&maxResults=25&regionCode=KR&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+    );
+    const videoItems = response.data.items;
+
+    const updatedVideos = await Promise.all(
+      videoItems.map(async (video) => {
+        const channelId = video.snippet.channelId;
+        const channelInfo = await fetchChannelInfo(channelId);
+        return {
+          ...video,
+          channelInfo: channelInfo,
+        };
+      })
+    );
+
+    setVideos(updatedVideos);
+  };
+
+  const fetchChannelInfo = async (channelId) => {
+    const response = await axios.get(
+      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2Cstatistics&id=${channelId}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`
+    );
+    const channelInfo = response.data.items[0];
+    return channelInfo;
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // videoId와 일치하는 동영상 찾기
+  const currentVideo = videos.find((video) => video.id === videoId);
+
+  // 동영상의 타이틀과 설명 추출
+  const videoTitle = currentVideo?.snippet?.title;
+  const videoDescription = currentVideo?.snippet?.description;
+
+  // 동영상의 채널 썸네일과 타이틀 추출
+  const channelThumbnail =
+    currentVideo?.channelInfo?.snippet?.thumbnails?.default?.url;
+  const channelTitle = currentVideo?.channelInfo?.snippet?.title;
+
+  // 동영상의 채널 구독자 수, 조회수, 업로드 시간 추출
+  const subscriberCount =
+    currentVideo?.channelInfo?.statistics?.subscriberCount;
+  const viewCount = currentVideo?.statistics?.viewCount;
+  const publishedAt = currentVideo?.snippet?.publishedAt;
+
+  const count = Math.floor(viewCount / 10000);
+  const time = moment(publishedAt).fromNow();
+
+  console.log(video);
   return (
     <>
       <StContainerDetail>
         <StDetailLt>
-          <StDetailMv></StDetailMv>
-          <StDetailTitle>
-            2023 ISU 피겨 그랑프리 3차_그랑프리 드 프랑스_이해인 프리_뮤지컬
-            '노트르담 드 파리' OST [습츠_피겨스케이팅]
-          </StDetailTitle>
+          <StDetailMv>
+            <ReactPlayer
+              playing={true}
+              url={`https://www.youtube.com/watch?v=${videoId}`}
+              width="100%"
+              height="720px"
+              style={{ border: "none", borderRadius: "20px" }}
+            />
+          </StDetailMv>
+          <StDetailTitle>{videoTitle}</StDetailTitle>
           <StDetailDescription>
-            <StThumbImg></StThumbImg>
-            <StThumbTitle>
-              <StThumbUser>스브스스포츠 SUBUSU SPORTS</StThumbUser>
-              <StThumbMember>구독자 47.2만명</StThumbMember>
-            </StThumbTitle>
-            <StDetailBtnB>구독</StDetailBtnB>
+            <StDetailG>
+              <StThumbImg
+                style={{ backgroundImage: `url(${channelThumbnail})` }}
+              />
+              <StThumbTitle>
+                <StThumbUser>{channelTitle}</StThumbUser>
+                <StThumbMember>구독자 {subscriberCount}명</StThumbMember>
+              </StThumbTitle>
+              <StDetailBtnB>구독</StDetailBtnB>
+            </StDetailG>
 
             <div className="DetailBtnG">
               <StDetailBtn>
@@ -51,13 +124,9 @@ const VideoDetail = () => {
             </div>
           </StDetailDescription>
           <StDetailBottom>
-            조회수 <span>6,900</span>시간 전 #피겨그랑프리3차_앙제 #이해인
-            #Hain_Lee
-            <br /> 2023 ISU 피겨 그랑프리 3차_그랑프리 드 프랑스_이해인
-            프리_뮤지컬 '노트르담 드 파리' OST [습츠_피겨스케이팅] <br />
-            <br /> 2023년 11월 4일 프랑스 앙제에서 열린 2023-2024 ISU 피겨
-            시니어 그랑프리 3차 대회 그랑프리 드 프랑스 여자 싱글
-            프리스케이팅에서 124.66점을 받아 최종 합계 190.96점...
+            조회수 <span>{count}만회</span> ㆍ{time}
+            <br />
+            {videoDescription}
           </StDetailBottom>
           <StCommentArea>
             <StComment>
@@ -78,17 +147,9 @@ const VideoDetail = () => {
           <CommentList />
         </StDetailLt>
         <StDetailRt>
-          <DetailList />
-          <DetailList />
-          <DetailList />
-          <DetailList />
-          <DetailList />
-          <DetailList />
-          <DetailList />
-          <DetailList />
-          <DetailList />
-          <DetailList />
-          <DetailList />
+          {videos.map((video, index) => (
+            <DetailList key={index} video={video} />
+          ))}
         </StDetailRt>
       </StContainerDetail>
     </>
@@ -119,13 +180,19 @@ const StDetailTitle = styled.div`
 `;
 const StDetailDescription = styled.div`
   display: flex;
+  justify-content: space-between;
   margin-bottom: 15px;
+`;
+
+const StDetailG = styled.div`
+  display: flex;
 `;
 const StThumbImg = styled.div`
   width: 45px;
   height: 40px;
   border-radius: 50px;
   background: url(/images/thumb_img.jpg) no-repeat;
+  background-size: cover;
 `;
 const StThumbTitle = styled.div`
   margin: 0 20px 0 10px;
@@ -145,7 +212,6 @@ const StDetailBtnB = styled.button`
   border-radius: 50px;
   color: #fff;
   font-size: 1.1rem;
-  margin-right: 235px;
 `;
 const StDetailBtn = styled.button`
   border: none;
@@ -165,11 +231,12 @@ const StDetailBtnCir = styled.button`
 const StDetailBottom = styled.div`
   width: 1250px;
   padding: 15px;
-  font-size: 0.98rem;
+  font-size: 0.93rem;
   background-color: #f2f2f2;
   border-radius: 15px;
   color: #555;
   margin-bottom: 24px;
+  font-weight: 500;
 `;
 const StCommentArea = styled.div`
   display: flex;
