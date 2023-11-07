@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import VideoCard from "./VideoCard";
 import axios from "axios";
 
 function Videos() {
-  const { keyword } = useParams();
   const [videos, setVideos] = useState([]);
 
   const fetchData = async () => {
@@ -39,7 +37,7 @@ function Videos() {
     fetchData();
   }, []);
 
-  // console.log(videos);
+  console.log(videos);
 
   return (
     <>
