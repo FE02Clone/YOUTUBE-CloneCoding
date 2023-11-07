@@ -6,6 +6,15 @@ import VideoShorts from "../components/VideoShorts";
 import SearchHeader from "../components/SearchHeader";
 import VideosSearch from "./VideosSearch";
 const Home = () => {
+  const filterList = [
+    "전체",
+    "음악",
+    "다시보기",
+    "실시간",
+    "최근에 업로드된 영상",
+    "새로운 맞춤영상",
+  ];
+
   return (
     <>
       <div className="container">
