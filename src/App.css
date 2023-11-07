@@ -310,6 +310,10 @@ ul {
   font-size: 0.9rem;
   font-weight: 500;
 }
+.DetailRtTitle {
+  height: 42px;
+  overflow: hidden;
+}
 .DetailRtTextS {
   font-size: 0.8rem;
   margin-top: 10px;

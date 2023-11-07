@@ -24,7 +24,7 @@ const DetailList = ({ video }) => {
           />
         </div>
         <div className="DetailRtText">
-          <div>{video.snippet.title}</div>
+          <div className="DetailRtTitle">{video.snippet.title}</div>
           <div className="DetailRtTextS">
             {video.snippet.channelTitle} <br /> 조회수 {count}만 회 ㆍ{time}
           </div>
