@@ -48,6 +48,8 @@ const VideoDetail = ({ video }) => {
     return channelInfo;
   };
 
+  console.log(videos);
+
   useEffect(() => {
     fetchData();
   }, []);

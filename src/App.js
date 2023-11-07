@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { apiKey } from "./shared/firebase";
 import { useEffect } from "react";
 import { loginCheckFB } from "./redux/modules/user";
+
 function App() {
   const dispatch = useDispatch();
 
@@ -30,6 +31,10 @@ function App() {
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/Video/Detail/:videoId" element={<VideoDetail />} />
+          <Route
+            path="/Video/DetailSearch/:videoId"
+            element={<SearchDetail />}
+          />
           <Route path="/search/:keyword" element={<VideosSearch />} />
           <Route path="/NotFound" element={<NotFound />} />
         </Routes>
