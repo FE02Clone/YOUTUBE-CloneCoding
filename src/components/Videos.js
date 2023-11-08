@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import VideoCard from "./VideoCard";
 import axios from "axios";
+import styled from "styled-components";
 
 function Videos() {
   const { keyword } = useParams();
@@ -39,17 +40,24 @@ function Videos() {
     fetchData();
   }, []);
 
-  console.log(videos);
+  // console.log(videos);
 
   return (
     <>
-      <div className="contents-main">
+      <StContentsMain>
         {videos.map((video, index) => (
-          <VideoCard key={index} video={video} />
+          <VideoCard key={index} video={video} link={`detail/${video.id}`} />
         ))}
-      </div>
+      </StContentsMain>
     </>
   );
 }
+
+const StContentsMain = styled.div`
+  width: 100vw;
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 export default Videos;

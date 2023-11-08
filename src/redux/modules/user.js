@@ -26,7 +26,7 @@ const initialState = {
 
 // thunk
 // 회원 가입
-const signUpFB = (email, password, nickname, { navigate }) => {
+const signUpFB = (email, password, user_name, { navigate }) => {
   return function (dispatch, getState) {
     firebase
       .auth()
@@ -35,14 +35,14 @@ const signUpFB = (email, password, nickname, { navigate }) => {
         console.log(user);
         auth.currentUser
           .updateProfile({
-            displayName: nickname,
+            displayName: user_name,
           })
           .then(() => {
             dispatch(
               setuser({
                 email: email,
                 password: password,
-                displayName: nickname,
+                user_name: user_name,
                 user_profile: "",
               })
             );
@@ -72,17 +72,16 @@ const loginFB = (email, password, { navigate }) => {
         .signInWithEmailAndPassword(email, password)
         .then((user) => {
           console.log(user);
-
           dispatch(
             setuser({
-              nickname: user.user.displayName,
+              user_name: user.user.displayName,
               email: email,
               user_profile: "",
               uid: user.user.uid,
             })
           );
           navigate("/");
-          console.log(setuser);
+          
         })
         .catch((error) => {
           alert(
@@ -130,11 +129,14 @@ const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
       setCookie("is_login", "success");
+      console.log(state);
       return {
         ...state,
-        user: action.payload,
+        user: action.user,
         is_login: true,
+        
       };
+      
     case LOG_OUT:
       deleteCookie("is_login");
       return {
