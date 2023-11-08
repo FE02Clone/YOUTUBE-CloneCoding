@@ -48,7 +48,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 635px;
+  min-width: 650px;
 }
 .search input {
   width: 540px;
@@ -73,6 +73,7 @@ ul {
   border-top-right-radius: 50px;
   border-bottom-right-radius: 50px;
   font-size: 1.2rem;
+  cursor: pointer;
 }
 .login {
   display: flex;
