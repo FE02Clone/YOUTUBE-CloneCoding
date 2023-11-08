@@ -4,7 +4,7 @@ import "moment/locale/ko";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video, link }) => {
   const time = moment(video.snippet.publishedAt).fromNow();
   const view = video.statistics.viewCount;
   const count = Math.floor(view / 10000);
@@ -15,7 +15,7 @@ const VideoCard = ({ video }) => {
 
   return (
     <Link
-      to={`/video/detail/${video.id}`}
+      to={`/video/${link}`}
       style={{ textDecoration: "none", color: "black" }}
     >
       <StThumbArea>

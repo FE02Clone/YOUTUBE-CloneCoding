@@ -46,7 +46,7 @@ function Videos() {
     <>
       <StContentsMain>
         {videos.map((video, index) => (
-          <VideoCard key={index} video={video} />
+          <VideoCard key={index} video={video} link={`detail/${video.id}`} />
         ))}
       </StContentsMain>
     </>
