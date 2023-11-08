@@ -5,11 +5,13 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import VideoDetail from "./pages/VideoDetail";
 import NotFound from "./pages/NotFound";
+import SearchDetail from "./pages/SearchDetail";
 import VideosSearch from "./pages/VideosSearch";
 import { useDispatch } from "react-redux";
 import { apiKey } from "./shared/firebase";
 import { useEffect } from "react";
 import { loginCheckFB } from "./redux/modules/user";
+import SearchDetail from "./pages/SearchDetail";
 
 function App() {
   const dispatch = useDispatch();
