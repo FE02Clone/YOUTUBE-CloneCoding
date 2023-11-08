@@ -133,7 +133,7 @@ const SearchDetail = ({ video }) => {
           <StDetailBottom>
             조회수 <span>{count}만회</span> ㆍ{time}
             <br />
-            {videoDescription}
+            <StVideoDescription>{videoDescription}</StVideoDescription>
           </StDetailBottom>
           <CommentArea />
         </StDetailLt>
@@ -234,4 +234,8 @@ const StDetailBottom = styled.div`
 const StDetailRt = styled.div`
   width: 380px;
   margin-left: 28px;
+`;
+const StVideoDescription = styled.div`
+  height: 80px;
+  overflow: hidden;
 `;
