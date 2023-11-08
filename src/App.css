@@ -17,8 +17,8 @@ ul {
   justify-content: left;
 }
 .nav-left {
-  /* width: 70px; */
-  /* padding: 0.5rem; */
+  /* width: 70px;
+  padding: 0.5rem; */
 }
 /* css변경 */
 .nav-icon {
@@ -112,65 +112,6 @@ ul {
 .m-select {
   display: block;
   background-color: black;
-}
-.contents-main {
-  width: 100vw;
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-}
-.thumb-area {
-  width: 350px;
-  margin-left: 15px;
-}
-.thumb-mv {
-  width: 345px;
-  height: 194px;
-  background: url("../public/images/youtube.jpg") no-repeat;
-  margin-bottom: 13px;
-  border-radius: 15px;
-}
-.thumb-detail {
-  display: flex;
-}
-.thumb-logo {
-  width: 56px;
-  height: 36px;
-  margin-right: 5px;
-  border-radius: 50px;
-  background: url(../public/images/thumbnail_logo.jpg) no-repeat;
-}
-.thumb-title {
-  font-size: 14px;
-  line-height: 1.05rem;
-  margin-bottom: 5px;
-}
-.thumb-user,
-.thumb-time {
-  margin-bottom: 2px;
-  font-size: 13px;
-  color: #606060;
-}
-.thumb-time {
-  margin-bottom: 45px;
-}
-.contents-shorts {
-  display: flex;
-}
-.shorts-logo {
-  margin-bottom: 25px;
-}
-
-.shorts-area {
-  width: 242px;
-  margin: 0 15px 15px 0;
-}
-.shorts-mv {
-  width: 241px;
-  height: 429px;
-  background: url(../public/images/short-img.jpg) no-repeat;
-  border-radius: 15px;
-  margin-bottom: 15px;
 }
 
 /* videoDetail */
@@ -310,13 +251,17 @@ ul {
   font-size: 0.9rem;
   font-weight: 500;
 }
+.DetailRtTitle {
+  height: 60px;
+  overflow: hidden;
+}
 .DetailRtTextS {
   font-size: 0.8rem;
   margin-top: 10px;
   color: #777;
 }
-.DetailSmallImg img {
-  width: 168px;
-  height: 95px;
+.DetailSmallImg {
+  width: 160px;
+  height: 95%;
   border-radius: 15px;
 }

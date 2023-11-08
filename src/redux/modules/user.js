@@ -15,7 +15,7 @@ const getuser = (user) => {
   return { type: GET_USER, user };
 };
 const setuser = (user) => {
-  return { type: SET_USER, payload: user };
+  return { type: SET_USER, user };
 };
 
 // initialState
@@ -26,7 +26,7 @@ const initialState = {
 
 // thunk
 // 회원 가입
-const signUpFB = (email, password, nickname) => {
+const signUpFB = (email, password, user_name, { navigate }) => {
   return function (dispatch, getState) {
     firebase
       .auth()
@@ -35,21 +35,22 @@ const signUpFB = (email, password, nickname) => {
         console.log(user);
         auth.currentUser
           .updateProfile({
-            displayName: nickname,
+            displayName: user_name,
           })
           .then(() => {
             dispatch(
               setuser({
                 email: email,
                 password: password,
-                nickname: nickname,
+                user_name: user_name,
                 user_profile: "",
               })
             );
+            navigate("/");
           })
           .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
+            let errorCode = error.code;
+            let errorMessage = error.message;
             console.error("회원 가입 실패", errorCode, errorMessage);
           });
 
@@ -64,27 +65,31 @@ const signUpFB = (email, password, nickname) => {
 };
 
 // 로그인
-const loginFB = (email, password) => {
+const loginFB = (email, password, { navigate }) => {
   return function (dispatch, getState) {
     auth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then((res) => {
       auth
         .signInWithEmailAndPassword(email, password)
         .then((user) => {
           console.log(user);
-
           dispatch(
             setuser({
+              user_name: user.user.displayName,
               email: email,
               user_profile: "",
               uid: user.user.uid,
             })
           );
+          navigate("/");
+          
         })
         .catch((error) => {
           alert(
             "등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력하였습니다."
           );
-          console.log(error);
+          let errorCode = error.code;
+          let errorMessage = error.message;
+          console.log(errorCode, errorMessage);
         });
     });
   };
@@ -124,11 +129,14 @@ const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_USER:
       setCookie("is_login", "success");
+      console.log(state);
       return {
         ...state,
-        user: action.payload,
+        user: action.user,
         is_login: true,
+        
       };
+      
     case LOG_OUT:
       deleteCookie("is_login");
       return {

@@ -4,18 +4,18 @@ import "moment/locale/ko";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video, link }) => {
   const time = moment(video.snippet.publishedAt).fromNow();
   const view = video.statistics.viewCount;
   const count = Math.floor(view / 10000);
 
-  const channelThumbnail = video.channelInfo?.thumbnails?.default?.url;
+  const channelThumbnail = video.channelInfo?.snippet?.thumbnails?.default?.url;
 
-  console.log(video);
+  // console.log(video);
 
   return (
     <Link
-      to={`/video/detail/${video.id}`}
+      to={`/video/${link}`}
       style={{ textDecoration: "none", color: "black" }}
     >
       <StThumbArea>
@@ -47,7 +47,7 @@ const StThumbArea = styled.div`
 
 const StThumbMv = styled.img`
   width: 345px;
-  height: 194px;
+  height: 100%;
   margin-bottom: 13px;
   border-radius: 15px;
 `;
@@ -65,15 +65,23 @@ const StThumbLogo = styled.div`
 `;
 
 const StThumbTitle = styled.div`
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none;
   width: 280px;
+  height: 41px;
+  overflow: hidden;
   font-size: 16px;
   font-weight: 450;
   line-height: 1.2rem;
-  margin-bottom: 12px;
+  margin-bottom: 3px;
 `;
 
 const StThumbUser = styled.div`
-  margin-bottom: 8px;
+  margin-bottom: 3px;
   font-size: 13px;
   color: #606060;
 `;
@@ -82,7 +90,7 @@ const StThumbTime = styled.div`
   margin-bottom: 8px;
   font-size: 13px;
   color: #606060;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 `;
 
 export default VideoCard;
