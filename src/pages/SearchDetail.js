@@ -1,11 +1,9 @@
 import React from "react";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
-import { MdSort } from "react-icons/md";
 import { PiShareFatLight } from "react-icons/pi";
 import { GiSaveArrow } from "react-icons/gi";
 import { IoCutOutline } from "react-icons/io5";
 import { RiMenuAddFill } from "react-icons/ri";
-import CommentList from "../components/CommentList";
 import styled from "styled-components";
 import { useParams } from "react-router";
 import ReactPlayer from "react-player";
@@ -14,6 +12,7 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 import SearchHeader from "../components/SearchHeader";
 import DetailList from "../components/DetailList";
+import CommentArea from "../components/CommentArea";
 
 const VideoDetail = ({ video }) => {
   const { videoId } = useParams();
@@ -135,23 +134,7 @@ const VideoDetail = ({ video }) => {
             <br />
             {videoDescription}
           </StDetailBottom>
-          <StCommentArea>
-            <StComment>
-              댓글 <span>36개</span>
-            </StComment>
-            <div className="Sort">
-              <MdSort />
-              정렬기준
-            </div>
-          </StCommentArea>
-          <StCommentAdd>
-            <StThumbImg></StThumbImg>
-            <div className="CommentInput">
-              <input type="text" placeholder="댓글추가" />
-            </div>
-          </StCommentAdd>
-          <CommentList />
-          <CommentList />
+          <CommentArea />
         </StDetailLt>
         <StDetailRt>
           {videos.map((video, index) => (
@@ -237,6 +220,7 @@ const StDetailBtnCir = styled.button`
 `;
 const StDetailBottom = styled.div`
   width: 1250px;
+  height: 82px;
   padding: 15px;
   font-size: 0.93rem;
   background-color: #f2f2f2;
@@ -244,19 +228,6 @@ const StDetailBottom = styled.div`
   color: #555;
   margin-bottom: 24px;
   font-weight: 500;
-`;
-const StCommentArea = styled.div`
-  display: flex;
-`;
-const StComment = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-  margin-right: 25px;
-`;
-const StCommentAdd = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 30px 0;
 `;
 
 const StDetailRt = styled.div`
