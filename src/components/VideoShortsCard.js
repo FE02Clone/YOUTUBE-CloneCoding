@@ -37,7 +37,7 @@ const StThumbTitle = styled.div`
   -webkit-line-clamp: 2;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-decoration: none
+  text-decoration: none;
   width: 240px;
   font-size: 16px;
   font-weight: 450;
