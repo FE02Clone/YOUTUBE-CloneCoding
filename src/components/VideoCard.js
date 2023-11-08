@@ -4,7 +4,7 @@ import "moment/locale/ko";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const VideoCard = ({ video, link }) => {
+const VideoCard = ({ video }) => {
   const time = moment(video.snippet.publishedAt).fromNow();
   const view = video.statistics.viewCount;
   const count = Math.floor(view / 10000);
@@ -15,7 +15,7 @@ const VideoCard = ({ video, link }) => {
 
   return (
     <Link
-      to={`/video/${link}`}
+      to={`/video/detail/${video.id}`}
       style={{ textDecoration: "none", color: "black" }}
     >
       <StThumbArea>
@@ -65,12 +65,6 @@ const StThumbLogo = styled.div`
 `;
 
 const StThumbTitle = styled.div`
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-decoration: none;
   width: 280px;
   height: 41px;
   overflow: hidden;

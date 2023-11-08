@@ -1,9 +1,11 @@
 import React from "react";
 import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { MdSort } from "react-icons/md";
 import { PiShareFatLight } from "react-icons/pi";
 import { GiSaveArrow } from "react-icons/gi";
 import { IoCutOutline } from "react-icons/io5";
 import { RiMenuAddFill } from "react-icons/ri";
+import CommentList from "../components/CommentList";
 import DetailList from "../components/DetailList";
 import styled from "styled-components";
 import { useParams } from "react-router";
@@ -13,7 +15,6 @@ import axios from "axios";
 import { useState } from "react";
 import moment from "moment";
 import SearchHeader from "../components/SearchHeader";
-import CommentArea from "../components/CommentArea";
 
 const VideoDetail = ({ video }) => {
   const { videoId } = useParams();
@@ -46,8 +47,6 @@ const VideoDetail = ({ video }) => {
     const channelInfo = response.data.items[0];
     return channelInfo;
   };
-
-  console.log(videos);
 
   useEffect(() => {
     fetchData();
@@ -129,9 +128,25 @@ const VideoDetail = ({ video }) => {
           <StDetailBottom>
             조회수 <span>{count}만회</span> ㆍ{time}
             <br />
-            <StVideoDescription>{videoDescription}</StVideoDescription>
+            {videoDescription}
           </StDetailBottom>
-          <CommentArea />
+          <StCommentArea>
+            <StComment>
+              댓글 <span>36개</span>
+            </StComment>
+            <div className="Sort">
+              <MdSort />
+              정렬기준
+            </div>
+          </StCommentArea>
+          <StCommentAdd>
+            <StThumbImg></StThumbImg>
+            <div className="CommentInput">
+              <input type="text" placeholder="댓글추가" />
+            </div>
+          </StCommentAdd>
+          <CommentList />
+          <CommentList />
         </StDetailLt>
         <StDetailRt>
           {videos.map((video, index) => (
@@ -217,7 +232,6 @@ const StDetailBtnCir = styled.button`
 `;
 const StDetailBottom = styled.div`
   width: 1250px;
-
   padding: 15px;
   font-size: 0.93rem;
   background-color: #f2f2f2;
@@ -226,10 +240,20 @@ const StDetailBottom = styled.div`
   margin-bottom: 24px;
   font-weight: 500;
 `;
-const StVideoDescription = styled.div`
-  height: 80px;
-  overflow: hidden;
+const StCommentArea = styled.div`
+  display: flex;
 `;
+const StComment = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 25px;
+`;
+const StCommentAdd = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 30px 0;
+`;
+
 const StDetailRt = styled.div`
   width: 380px;
   margin-left: 28px;

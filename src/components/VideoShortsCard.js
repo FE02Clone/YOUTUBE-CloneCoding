@@ -32,13 +32,7 @@ const StShortsMv = styled.img`
 `;
 
 const StThumbTitle = styled.div`
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-decoration: none;
-  width: 240px;
+  width: 280px;
   font-size: 16px;
   font-weight: 450;
   line-height: 1.2rem;

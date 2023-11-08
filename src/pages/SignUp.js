@@ -10,12 +10,12 @@ const SignUp = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user_name, setUserName] = useState("");
+  const [nickname, setNickname] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
 
   const handleSignUp = () => {
-    if (email === "" || password === "" || user_name === "") {
+    if (email === "" || password === "" || nickname === "") {
       alert("이메일,비밀번호,닉네임을 모두 입력해 주세요");
       return;
     }
@@ -35,7 +35,7 @@ const SignUp = () => {
       return;
     }
 
-    dispatch(signUpFB(email, password, user_name, { navigate }));
+    dispatch(signUpFB(email, password, nickname, { navigate }));
   };
 
   return (
@@ -55,7 +55,7 @@ const SignUp = () => {
           <Input1
             placeholder="닉네임을 입력하세요"
             onChange={(e) => {
-              setUserName(e.target.value);
+              setNickname(e.target.value);
             }}
           />
           <Input2
@@ -84,7 +84,7 @@ const SignUp = () => {
             email === "" ||
             password === "" ||
             confirmPassword === "" ||
-            user_name === "" ||
+            nickname === "" ||
             password !== confirmPassword ||
             password.length < 6 ||
             !emailCheck(email)
@@ -140,7 +140,7 @@ const Input1 = styled.input`
   width: 100%;
   height: 50px;
   border-bottom: solid 1px #acacac;
-`;
+  `;
 
 const Input2 = styled.input`
   width: 100%;

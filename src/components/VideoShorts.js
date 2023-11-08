@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import VideoShortsCard from "./VideoShortsCard";
 import axios from "axios";
-import styled from "styled-components";
 
 const VideoShorts = () => {
   const [shorts, setShorts] = useState([]);
@@ -38,27 +37,21 @@ const VideoShorts = () => {
     fetchData();
   }, []);
 
-  // console.log(shorts);
+  console.log(shorts);
 
   return (
     <>
-      <StShortsLogo>
+      <div className="shorts-logo">
         <img src="/images/logo_shorts.jpg" alt="숏영상로고" />
-      </StShortsLogo>
-      <StContentsShorts>
+      </div>
+      <div className="contents-shorts">
         {shorts.map((video, index) => (
           <VideoShortsCard key={index} video={video} />
         ))}
-      </StContentsShorts>
+      </div>
     </>
   );
 };
 
-const StContentsShorts = styled.div`
-  display: flex;
-`;
 
-const StShortsLogo = styled.div`
-  margin-bottom: 25px;
-`;
 export default VideoShorts;
