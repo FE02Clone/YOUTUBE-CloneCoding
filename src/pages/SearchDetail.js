@@ -15,7 +15,7 @@ import moment from "moment";
 import SearchHeader from "../components/SearchHeader";
 import DetailList from "../components/DetailList";
 
-const VideoDetail = ({ video }) => {
+const SearchDetail = ({ video }) => {
   const { videoId } = useParams();
   const [videoInfo, setVideoInfo] = useState({});
   const [channelInfo, setChannelInfo] = useState({});
@@ -36,6 +36,7 @@ const VideoDetail = ({ video }) => {
       const channelInfo = channelResponse.data.items[0];
       setChannelInfo(channelInfo);
 
+      //추천동영상 정보 받아오기
       const responses = await axios.get(
         `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics%2Cplayer&chart=mostPopular&maxResults=25&regionCode=KR&key=${process.env.REACT_APP_YOUTUBE_API_KEYI}`
       );
@@ -163,7 +164,7 @@ const VideoDetail = ({ video }) => {
   );
 };
 
-export default VideoDetail;
+export default SearchDetail;
 
 const StContainerDetail = styled.div`
   margin: 30px 0 0 30px;
