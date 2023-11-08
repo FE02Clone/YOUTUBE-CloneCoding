@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { apiKey } from "./shared/firebase";
 import { useEffect } from "react";
 import { loginCheckFB } from "./redux/modules/user";
+import SearchDetail from "./pages/SearchDetail";
 
 function App() {
   const dispatch = useDispatch();
