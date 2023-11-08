@@ -15,7 +15,7 @@ const getuser = (user) => {
   return { type: GET_USER, user };
 };
 const setuser = (user) => {
-  return { type: SET_USER, user };
+  return { type: SET_USER, payload: user };
 };
 
 // initialState
@@ -26,7 +26,7 @@ const initialState = {
 
 // thunk
 // 회원 가입
-const signUpFB = (email, password, nickname, { navigate }) => {
+const signUpFB = (email, password, nickname) => {
   return function (dispatch, getState) {
     firebase
       .auth()
@@ -42,15 +42,14 @@ const signUpFB = (email, password, nickname, { navigate }) => {
               setuser({
                 email: email,
                 password: password,
-                displayName: nickname,
+                nickname: nickname,
                 user_profile: "",
               })
             );
-            navigate("/");
           })
           .catch((error) => {
-            let errorCode = error.code;
-            let errorMessage = error.message;
+            const errorCode = error.code;
+            const errorMessage = error.message;
             console.error("회원 가입 실패", errorCode, errorMessage);
           });
 
@@ -65,7 +64,7 @@ const signUpFB = (email, password, nickname, { navigate }) => {
 };
 
 // 로그인
-const loginFB = (email, password, { navigate }) => {
+const loginFB = (email, password) => {
   return function (dispatch, getState) {
     auth.setPersistence(firebase.auth.Auth.Persistence.SESSION).then((res) => {
       auth
@@ -75,22 +74,17 @@ const loginFB = (email, password, { navigate }) => {
 
           dispatch(
             setuser({
-              nickname: user.user.displayName,
               email: email,
               user_profile: "",
               uid: user.user.uid,
             })
           );
-          navigate("/");
-          console.log(setuser);
         })
         .catch((error) => {
           alert(
             "등록되지 않은 아이디이거나 아이디 또는 비밀번호를 잘못 입력하였습니다."
           );
-          let errorCode = error.code;
-          let errorMessage = error.message;
-          console.log(errorCode, errorMessage);
+          console.log(error);
         });
     });
   };
