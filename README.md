@@ -103,7 +103,7 @@ Youtube clone
     <td align="center"><b><a href="https://github.com/unchul">임운철</a></b></td>
     <td align="center"><b><a href="https://github.com/newsks">신수경</a></b></td>
     <td align="center"><b><a href="https://github.com/hanjihyeong">한지형</a></b></td>
-    <td align="center"><b><a href="https://github.com/EMILYelly">주연</a></b></td>
+    <td align="center"><b><a href="https://github.com/EMILYelly">이주연</a></b></td>
   </tr>
   <tr>
   <td align="center"><a href="https://github.com/unchul"><img src="https://avatars.githubusercontent.com/u/105141025?v=4" width="100px" /></a></td>
