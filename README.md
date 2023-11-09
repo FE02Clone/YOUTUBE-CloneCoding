@@ -34,7 +34,10 @@ Youtube clone
   <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
   <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
-  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+  <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white">
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white">
+  <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white">
 </div>
 <br>
 <br>
@@ -66,7 +69,7 @@ Youtube clone
 
 - api의 할당량을 계산해서 api키를 2개로 나누었고, 팀원들과 같이 사용하던 api키도 각자 따로 사용하는 방법으로 할당량의 부담을 해소했습니다.
 
-- 부모컴포넌트에서부터 자식으로 내려가며 코드의 흐름을 생각하고 search header에서는 keyword만 내려주면 된다는걸 알게 되었고,
+- 부모컴포넌트에서부터 자식으로 내려가며 코드의 흐름을 생각하고 search header에서는 keyword만 내려주면 된다는걸 알게 되었습니다.
 
 - 자식컴포넌트인 VideoSearch에서는 useParams를 통해 부모컴포넌트에서 내려준 keyword를 사용해서 api통신을 하는 방향으로 진행했습니다.
 
@@ -74,9 +77,9 @@ Youtube clone
 
 **`결과`**
 
-- Api 할당량 부족으로 403error 현상이 사라졌다.
+- Api 할당량 부족으로 403error 현상이 사라졌습니다.
 
- <summary>➡️ 배포시 Environment Variables 선설정체크 못함</summary> 
+ <summary>➡️ 배포시 Environment Variables 선설정체크 못하여 배포안됨</summary> 
   <br/>
   
   **`문제점`**
