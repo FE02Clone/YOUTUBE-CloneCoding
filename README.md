@@ -28,22 +28,6 @@ Youtube clone
 
 ### 4. 필터적용 검색
 
-### 4. 금주의 인기Paper와 인기 블로거를 확인
-
-  <details> <summary>좋아요를 가장 많이 받은 Paper와 가장 인기가 좋은 블로거를 메인페이지에서 확인 가능합니다!</summary> <div markdown="1">
-
-1. 메인 페이지 상단의 카테고리란에서 카테고리에 맞는 글들을 모아 볼수 있습니다.
-2. 검색으로 원하는 글을 찾으실수 있습니다.
-3. 좋아요 순으로 메인 페이지의 상단에 금주의 best Paper가 기재 됩니다.
-4. 화상채팅을 통해 인기도가 오른 순으로 인기 블로그란에 기재 됩니다.
-   <img width='50%' src='https://ifh.cc/g/qkbV3a.jpg'>  
-   <img width='50%' src='https://ifh.cc/g/A0t4Oy.jpg'>
-   <img width='50%' src='https://ifh.cc/g/XPaxFJ.jpg'>
-   <img width='50%' src='https://ifh.cc/g/oQYS01.jpg'>
-
-  <br/>
-  <br/>
-
 ## 🛠 기술 스택
 
 <div align=left>
@@ -71,7 +55,7 @@ Youtube clone
 
 ## 🔥 트러블 슈팅
 
- <details> <summary>➡️ Api 할당량</summary> <div markdown="1">
+<summary>➡️ Api 할당량</summary> 
   <br/>
 
 **`문제점`**
@@ -93,10 +77,8 @@ Youtube clone
 **`결과`**
 
 - Api 할당량 부족으로 403error 현상이 사라졌다.
-</div>
-</details>
 
- <details> <summary>➡️ 배포시 Environment Variables 선설정체크 못함</summary> <div markdown="1">
+ <summary>➡️ 배포시 Environment Variables 선설정체크 못함</summary> 
   <br/>
   
   **`문제점`**
@@ -113,8 +95,6 @@ Youtube clone
 **`결과`**
 
 - Firebase 보안도 해결되어 배포 완료되었습니다.
-</div>
-</details>
 
 <br /><br/>
 
