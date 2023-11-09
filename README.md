@@ -2,9 +2,9 @@
 
 ## <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"/> Youtube clone
 
-<br /><br />
+<br />
 
-## [사이트 주소 Link.](https://fe02-clonecodingproject.vercel.app)
+## <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"/> [사이트 주소 Link.](https://fe02-clonecodingproject.vercel.app)
 
 <br />
 
