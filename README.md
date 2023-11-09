@@ -26,6 +26,8 @@ Youtube clone
 
 ### 4. 필터적용 검색
 
+<br />
+<br />
 ## 🛠 기술 스택
 
 <div align=left>
