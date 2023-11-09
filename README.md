@@ -1,6 +1,6 @@
 <img src="https://sour-process-b08.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F812354cb-4304-4b1b-b07d-f3c2e18143f4%2F5920fd40-2fed-478f-8e18-c882745b255c%2F%25EC%259C%25A0%25ED%2588%25AC%25EB%25B8%258C%25EC%258D%25B8%25EB%2584%25A4%25EC%259D%25BC.jpg?table=block&id=9fbfcd2a-3e6d-40ac-8d7d-3956145a8895&spaceId=812354cb-4304-4b1b-b07d-f3c2e18143f4&width=2000&userId=&cache=v2"/>
 
-## <img src="https://sour-process-b08.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F812354cb-4304-4b1b-b07d-f3c2e18143f4%2Fb4646fff-065d-4546-b04d-dab80dbd71df%2FUntitled.png?table=block&id=7761f465-0bf8-46fa-9c71-2dc6dbf62b6b&spaceId=812354cb-4304-4b1b-b07d-f3c2e18143f4&width=60&userId=&cache=v2"/> [Youtube](https://fe02-clonecodingproject.vercel.app/)
+## <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"/> Youtube
 
 Youtube clone
 <br /><br />
