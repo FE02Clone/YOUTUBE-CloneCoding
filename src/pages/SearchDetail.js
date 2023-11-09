@@ -221,7 +221,6 @@ const StDetailBtnCir = styled.button`
 `;
 const StDetailBottom = styled.div`
   width: 1250px;
-  height: 82px;
   padding: 15px;
   font-size: 0.93rem;
   background-color: #f2f2f2;
