@@ -39,26 +39,26 @@ const SignUp = () => {
   };
 
   return (
-    <SignUpContainer>
-      <SignUpBox>
-        <Title>
+    <StSignUpContainer>
+      <StSignUpBox>
+        <StTitle>
           <h2>회원가입</h2>
           <p>Sign Up</p>
-        </Title>
-        <InputBox>
-          <Input1
+        </StTitle>
+        <StInputBox>
+          <StInput1
             placeholder="아이디를 입력하세요(E-mail)"
             onChange={(e) => {
               setEmail(e.target.value);
             }}
           />
-          <Input1
+          <StInput1
             placeholder="닉네임을 입력하세요"
             onChange={(e) => {
               setUserName(e.target.value);
             }}
           />
-          <Input2
+          <StInput2
             placeholder="비밀 번호를 입력하세요(6자리 이상)"
             type="password"
             onChange={(e) => {
@@ -67,7 +67,7 @@ const SignUp = () => {
             password={password}
             confirmPassword={confirmPassword}
           />
-          <Input2
+          <StInput2
             placeholder="비밀 번호를 다시 입력 하세요"
             type="password"
             onChange={(e) => {
@@ -76,9 +76,9 @@ const SignUp = () => {
             password={password}
             confirmPassword={confirmPassword}
           />
-        </InputBox>
+        </StInputBox>
 
-        <SignUpButton
+        <StSignUpButton
           onClick={handleSignUp}
           disabled={
             email === "" ||
@@ -91,25 +91,25 @@ const SignUp = () => {
           }
         >
           회원가입
-        </SignUpButton>
-      </SignUpBox>
-    </SignUpContainer>
+        </StSignUpButton>
+      </StSignUpBox>
+    </StSignUpContainer>
   );
 };
 
-const SignUpContainer = styled.div`
+const StSignUpContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #fffdf7;
 `;
 
-const SignUpBox = styled.div`
+const StSignUpBox = styled.div`
   width: 386px;
   margin: 160px auto;
 `;
 
-const Title = styled.div`
+const StTitle = styled.div`
   display: flex;
   text-align: center;
   flex-direction: column;
@@ -129,20 +129,20 @@ const Title = styled.div`
   }
 `;
 
-const InputBox = styled.div`
+const StInputBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 16px;
 `;
 
-const Input1 = styled.input`
+const StInput1 = styled.input`
   width: 100%;
   height: 50px;
   border-bottom: solid 1px #acacac;
 `;
 
-const Input2 = styled.input`
+const StInput2 = styled.input`
   width: 100%;
   height: 50px;
   border-bottom: solid 1px #acacac;
@@ -156,7 +156,7 @@ const Input2 = styled.input`
       : ""};
 `;
 
-const SignUpButton = styled.button`
+const StSignUpButton = styled.button`
   width: 100%;
   height: 50px;
   background-color: ${(props) => (props.disabled ? "gray" : "black")};
