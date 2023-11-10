@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import * as icon from "../icons/index";
+import { Link } from "react-router-dom";
 
 const Container = styled.ul`
   padding: 0.5rem;
@@ -38,21 +39,24 @@ const NavLeft = () => {
             <img src="/images/icon_total.jpg" alt="" />
           </li>
           <Container>
-            <Iconbox
-              key={1}
-              onClick={() => {
-                setClicked(1);
-              }}
-            >
-              <div>
-                {clicked === 1 ? (
-                  <icon.Ic_home_selected></icon.Ic_home_selected>
-                ) : (
-                  <icon.Ic_home></icon.Ic_home>
-                )}
-              </div>
-              <Text>홈</Text>
-            </Iconbox>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <Iconbox
+                key={1}
+                onClick={() => {
+                  setClicked(1);
+                }}
+              >
+                {" "}
+                <div>
+                  {clicked === 1 ? (
+                    <icon.Ic_home_selected></icon.Ic_home_selected>
+                  ) : (
+                    <icon.Ic_home></icon.Ic_home>
+                  )}
+                </div>
+                <Text>홈</Text>
+              </Iconbox>
+            </Link>
             <Iconbox
               key={2}
               onClick={() => {
