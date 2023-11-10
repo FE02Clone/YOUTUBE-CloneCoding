@@ -34,21 +34,21 @@ const Login = () => {
 
   return (
     
-    <LoginContainer>
-      <LoginBox>
-        <Title>
+    <StLoginContainer>
+      <StLoginBox>
+        <StTitle>
           <h2>로그인</h2>
           <p>Log in</p>
-        </Title>
-        <InputBox>
-          <Input
+        </StTitle>
+        <StInputBox>
+          <StInput
             type="email"
             lavel="아이디"
             value={email}
             onChange={changeId}
             placeholder="이메일을 입력하세요"
           />
-          <Input
+          <StInput
             type="password"
             lavel="비밀번호"
             value={password}
@@ -61,33 +61,33 @@ const Login = () => {
               }
             }}
           />
-        </InputBox>
-        <SignUpText onClick={() => navigate('/signup')}>회원가입</SignUpText>
-        <LoginButton
+        </StInputBox>
+        <StSignUpText onClick={() => navigate('/signup')}>회원가입</StSignUpText>
+        <StLoginButton
           onClick={() => {
             login();
           }}
           disabled={email === "" || password === "" || !emailCheck(email)}
         >
           로그인
-        </LoginButton>
-      </LoginBox>
-    </LoginContainer>
+        </StLoginButton>
+      </StLoginBox>
+    </StLoginContainer>
   );
 };
 
-const LoginContainer = styled.div`
+const StLoginContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #fffdf7;
 `;
-const LoginBox = styled.div`
+const StLoginBox = styled.div`
   width: 386px;
   margin: 160px auto;
 `;
 
-const Title = styled.div`
+const StTitle = styled.div`
   display: flex;
   text-align: center;
   flex-direction: column;
@@ -107,26 +107,26 @@ const Title = styled.div`
   }
 `;
 
-const InputBox = styled.div`
+const StInputBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 16px;
 `;
-const Input = styled.input`
+const StInput = styled.input`
   width: 100%;
   height: 50px;
   border-bottom: solid 1px #acacac;
 `;
 
-const SignUpText = styled.div`
+const StSignUpText = styled.div`
   text-decoration: underline;
   color: blue;
   cursor: pointer;
   margin-top: 15px;
 `;
 
-const LoginButton = styled.button`
+const StLoginButton = styled.button`
   width: 100%;
   height: 50px;
   background-color: ${(props) => (props.disabled ? "gray" : "black")};
